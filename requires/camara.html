@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Prueba de cámara Web</title>
+    <script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
+    <style type="text/css">
+        .contenedor{ width: 350px; float: left;}
+        .titulo{ font-size: 12pt; font-weight: bold;}
+        #camara, #foto{
+            width: 320px;
+            min-height: 240px;
+            border: 1px solid #008000;
+        }
+    </style>
+    <script type="text/javascript">
+        //El código Javascript está en la siguiente sección del post
+        //Nos aseguramos que estén definidas
+//algunas funciones básicas
+window.URL = window.URL || window.webkitURL;
+navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || function(){alert('Su navegador no soporta navigator.getUserMedia().');};
+ 
+jQuery(document).ready(function(){
+    //Este objeto guardará algunos datos sobre la cámara
+    window.datosVideo = {
+        'StreamVideo': null,
+        'url': null
+    };
+     
+    jQuery('#botonIniciar').on('click', function(e){
+        //Pedimos al navegador que nos de acceso a 
+        //algún dispositivo de video (la webcam)
+        navigator.getUserMedia({'audio':false, 'video':true}, function(streamVideo){
+            datosVideo.StreamVideo = streamVideo;
+            datosVideo.url = window.URL.createObjectURL(streamVideo); 
+            jQuery('#camara').attr('src', datosVideo.url);
+        }, function(){
+            alert('No fue posible obtener acceso a la cámara.');
+        });
+ 
+    });
+ 
+    jQuery('#botonDetener').on('click', function(e){
+        if(datosVideo.StreamVideo){
+            datosVideo.StreamVideo.stop();
+            window.URL.revokeObjectURL(datosVideo.url);
+        };
+    });
+});
+
+        
+    </script>
+    <!-- <script type="text/javascript">
+        'use strict';
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const snap = document.getElementById("snap");
+const errorMsgElement = document.querySelector('span#errorMsg');
+
+const constraints = {
+  audio: true,
+  video: {
+    width: 1280, height: 720
+  }
+};
+
+// Access webcam
+async function init() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(stream);
+  } catch (e) {
+    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+  }
+}
+
+// Success
+function handleSuccess(stream) {
+  window.stream = stream;
+  video.srcObject = stream;
+}
+
+// Load init
+init();
+
+// Draw image
+var context = canvas.getContext('2d');
+snap.addEventListener("click", function() {
+        context.drawImage(video, 0, 0, 640, 480);
+});
+    </script> -->
+</head>
+<body>
+    <div id='botonera'>
+        <input id='botonIniciar' type='button' value = 'Iniciar'></input>
+        <input id='botonDetener' type='button' value = 'Detener'></input>
+        <input id='botonFoto' type='button' value = 'Foto'></input>
+    </div>
+    <div class="contenedor">
+        <div class="titulo">Cámara</div>
+        <video id="camara" autoplay controls></video>
+    </div>
+    <div class="contenedor">
+        <div class="titulo">Foto</div>
+        <canvas id="foto" ></canvas>
+    </div>  
+
+<!-- Stream video via webcam -->
+<div class="video-wrap">
+    <video id="video" playsinline autoplay></video>
+</div>
+
+<!-- Trigger canvas web API -->
+<div class="controller">
+    <button id="snap">Capture</button>
+</div>
+
+<!-- Webcam video snapshot -->
+<canvas id="canvas" width="640" height="480"></canvas>
+
+</body>
+</html>

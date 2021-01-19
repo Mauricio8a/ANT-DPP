@@ -1,0 +1,77 @@
+/*Header*/
+header{
+	background: #FBFBEE;
+}
+
+
+/*Body*/
+body{
+	font-size: initial;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: #F4232D;
+}
+
+#main{
+	border-style: solid;
+	border-radius: 5px;
+	border-color: #065DAC;
+	 
+}
+
+div .modal-content{
+	background: #FBFBEE;
+}
+
+h1 {
+	color: #065DAC;
+}
+
+#table{
+	font-size: 12px;
+}
+
+/*Footer*/
+footer h3{
+	
+}
+
+footer .col-md-4 {
+	/*border-style: dashed;*/
+	/*border-right: 1px #000000;
+	border-left: 1px #000000;*/
+}
+
+
+
+h4{
+	font-weight: bold;
+	color: #F4232D;
+	font-size: 20px;
+	margin-top: 0px;
+	padding: 10px;	
+	
+	
+	/*border: 1px;*/
+	
+	}
+
+footer {
+	margin-top: 10px;
+	background-image: linear-gradient(gray, white);
+	font-size: 12px;
+	font-variant: normal;
+	font-weight: bold;
+}
+footer a{
+	color: #000000;
+}
+footer a:hover{
+	font-style: italic;
+}
