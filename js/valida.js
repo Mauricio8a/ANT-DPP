@@ -1,4 +1,5 @@
 //FUNCIONES
+//Función para validar los datos de los formularios de ingreso de personal
 function valida_form ( )
 {
 	var input = "";

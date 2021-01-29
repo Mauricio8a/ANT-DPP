@@ -194,23 +194,23 @@ require 'dll/mysql.php';
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="login.php">
             <div class="form-group">
-              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;E-mail</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">Ingrese su e-mail institucional como nombre de usuario.</small>
+              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user" >
+              <small id="emailHelp" class="form-text text-muted">Ingrese su nombre de usuario.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><i class="fas fa-key"></i>&nbsp;&nbsp;Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
             </div>
-            
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+        <button type="submit" class="btn btn-primary" >Ingresar</button>
+      </div>   
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='requires/admin.php'">Ingresar</button>
-      </div>
+     
     </div>
   </div>
 </div>

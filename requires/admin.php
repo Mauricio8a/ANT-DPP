@@ -41,7 +41,7 @@ extract($_POST);
           </li>
           <form class="form-inline" action="admin.php" method="post">
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="campo">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           </form>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestión de Usuarios
@@ -97,15 +97,15 @@ extract($_POST);
           echo "<tr>";
           $cont++;
           echo "<td><strong>$cont</strong></td>";
-          echo "<td><a href='editar.php?cedula=$line1[0]'>$line1[0]</a></td>";          
+          echo "<td><a href='editar_usuario.php?cedula=$line1[0]'>$line1[0]</a></td>";          
           echo "<td>$line1[1]</td>";
           echo "<td>$line1[2]</td>";
           echo "<td>$line1[5]</td>";
           echo "<td>$line1[6]</td>";
           echo "<td>$line1[3]</td>";
           echo "<td>$line1[4]</td>";
-          echo "<td><a href='editar.php?cedula=$line1[0]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
-          echo "<td><a href='eliminar.php?cedula=$line1[0]'><i class='far fa-trash-alt'></i></a></td>";
+          echo "<td><a href='editar_usuario.php?cedula=$line1[0]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
+          echo "<td><a href='eliminar_usuario.php?cedula=$line1[0]'><i class='far fa-trash-alt'></i></a></td>";
 
           // echo "<td><a href='editar.php?id=$line1[0]' class='editar'><span class='icon-pencil'></span></a>";
           // echo "<td><a href='eliminar.php?cedula=$line1[1]' class='eliminar'><span class='icon-trashcan'></span></a>";
@@ -118,7 +118,7 @@ extract($_POST);
 
 <!-- MODAL -->
 <!-- CREACIÓN DE USUARIOS -->
- --><div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -138,17 +138,17 @@ extract($_POST);
              <div class="form-row"> 
               <div class="form-group col-md-6">
                 <label for="cedula">Apellidos</label>
-                <input type="form-text" class="form-control" id="apellidos" name="apellidos" pattern="^[\w]+ " maxlength="70" required>
+                <input type="form-text" class="form-control" id="apellidos" name="apellidos" maxlength="70" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="nombres">Nombres</label>
-                <input type="form-text" class="form-control" id="nombres" name="nombres" pattern="^[\w]+ " maxlength="70" required>
+                <input type="form-text" class="form-control" id="nombres" name="nombres" maxlength="70" required>
               </div>
              </div> 
              <div class="form-row"> 
               <div class="form-group col-md-6">
                 <label for="cargo">Cargo</label>
-                <input type="form-text" class="form-control" id="cargo" name="cargo" pattern="^[\w]+" maxlength="70" required>
+                <input type="form-text" class="form-control" id="cargo" name="cargo" maxlength="70" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="email">Email</label>

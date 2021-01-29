@@ -3,7 +3,16 @@ header{
 	background: #FBFBEE;
 }
 
+nav a{
+	color: #FFF006;
+	
+}
 
+nav{
+	
+	border-color: #000000;
+	background-color: #000000;
+}
 /*Body*/
 body{
 	font-size: initial;
@@ -20,14 +29,20 @@ a:hover{
 
 #main{
 	border-style: solid;
-	border-radius: 5px;
+	border-radius: 10px;
 	border-color: #065DAC;
+	padding: 5px;
 	 
 }
 
 div .modal-content{
 	background: #FBFBEE;
 }
+
+div .form .row{
+	padding: 5px;
+	border: 25px;
+}	
 
 h1 {
 	color: #065DAC;
