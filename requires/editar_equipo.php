@@ -34,7 +34,7 @@ extract($_GET);
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-          	<div class="navbar-text">Mostrando información del personal administrativo: </div>
+          	<div class="navbar-text">Mostrando información de Equipo Tecnológico: </div>
           	
           </li>
           
@@ -43,7 +43,7 @@ extract($_GET);
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" data-toggle="modal" data-target="#staticBackdrop1">Actualizar datos</a>
-              <a class="dropdown-item" href="#">Eliminar usuario</a>
+              <a class="dropdown-item" href="#">Eliminar Equipo</a>
             </div>
           </li>
           <li class="nav-item">
@@ -59,94 +59,94 @@ extract($_GET);
 
 	</div>
 	<?php
-          	$query0 = "SELECT a.cedula, a.apellidos, a.nombres, a.email, a.cargo, a.telefono, a.direccion, b.descripcion FROM personas a, departamentos b WHERE a.cedula='$cedula' AND a.departamentos_iddepartamento = b.iddepartamento";
+          	$query0 = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.color, a.observacion, b.apellidos, b.nombres, a.idequipo, a.custodios_idcustodio FROM equipostecnologicos a, personas b WHERE a.serie='$serie' AND a.custodios_idcustodio = b.idpersona";
           	$result0 = $my_sqli->query($query0);
           	$line = mysqli_fetch_row($result0);
   ?>
             <div class="row">
             	<div class="col-md-6">
-            		<div>Datos de C.I.: <strong><?php echo $line[0]; ?></strong></div>
-            		<div>Apellidos/Nombres: <strong><?php echo $line[1] . " " . $line[2]; ?></strong></div>
-            		<div>Email: <strong><?php echo $line[3]; ?></strong></div>
-            		<div>Cargo: <strong><?php echo $line[4]; ?></strong></div>
-            		<div>Teléfono: <strong><?php echo $line[5]; ?></strong></div>
-            		<div>Dirección: <strong><?php echo $line[6]; ?></strong></div>
-                <div>Departamento: <strong><?php echo $line[7]; ?></strong></div>
+            		<div>CODIGO AVALUAC.: <strong><?php echo $line[0]; ?></strong></div>
+            		<div>CODIGO ANT: <strong><?php echo $line[1]?></strong></div>
+            		<div>CODIGO ESBYE: <strong><?php echo $line[2]; ?></strong></div>
+            		<div>SERIE #: <strong><?php echo $line[3]; ?></strong></div>
+            		<div>MARCA: <strong><?php echo $line[4]; ?></strong></div>
+            		<div>MODELO: <strong><?php echo $line[5]; ?></strong></div>
+                <div>DESCRIPCION: <strong><?php echo $line[6]; ?></strong></div>
+                <div>COLOR: <strong><?php echo $line[7]; ?></strong></div>
+                <div>OBSERVACION: <strong><?php echo $line[8]; ?></strong></div>
+                <div>CUSTODIO: <strong><?php echo $line[9]." ".$line[10]; ?></strong></div>
             	</div>
-            	<div class="col-md-6" align="center">
-            		<div>Fotografía actualizada</div>
-            		<div><img src="<?php echo '$line[8]' ?>"></div>
-            	</div>
+            	
             </div>
 </div>
 
 
 <!-- MODAL -->
-<!-- ACTUALIZACIÓN DE USUARIOS -->
+<!-- ACTUALIZACIÓN DE EQUIPOS -->
 <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-user-edit"></i><strong>&nbsp;&nbsp;Actualización de Datos</strong></h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-laptop-code"></i><strong>&nbsp;&nbsp;Actualización de Equipos</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form name="edita_usu" action="actualiza_usuario.php" method="post" enctype="multipart/form-data">
+        <form name="actualiza_eq" action="actualiza_equipo.php" method="post" enctype="multipart/form-data">
              <div class="form-row"> 
               <div class="form-group col-md-6">
-                <label for="cedula">Cédula</label>
-                <input type="form-text" class="form-control" id="cedula" name="cedula" value="<?php echo $line[0];?>" pattern="^[0-9]+" minlength="10" maxlength="10" required>
+                <label for="avaluac">CODIGO AVALUAC</label>
+                <input type="form-text" class="form-control" id="avaluac" name="avaluac" value="<?php echo $line[0];?>" pattern="^[0-9]+" maxlength="20">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ant">CODIGO ANT</label>
+                <input type="form-text" class="form-control" id="ant" name="ant" value="<?php echo $line[1];?>" maxlength="20">
               </div>
              </div> 
              <div class="form-row"> 
               <div class="form-group col-md-6">
-                <label for="cedula">Apellidos</label>
-                <input type="form-text" class="form-control" id="apellidos" name="apellidos"  value="<?php echo $line[1];?>"  minlength="1" maxlength="70" required>
+                <label for="esbye">CODIGO ESBYE</label>
+                <input type="form-text" class="form-control" id="esbye" name="esbye" value="<?php echo $line[2];?>"maxlength="30">
               </div>
               <div class="form-group col-md-6">
-                <label for="nombres">Nombres</label>
-                <input type="form-text" class="form-control" id="nombres" name="nombres" value="<?php echo $line[2];?>"  maxlength="70" required>
+                <label for="serie">SERIE</label>
+                <input type="form-text" class="form-control" id="serie" name="serie" value="<?php echo $line[3];?>" maxlength="70" required>
               </div>
              </div> 
              <div class="form-row"> 
               <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $line[3];?>" pattern="^[\w.\w]+@ant.gob.ec" maxlength="128" placeholder="@ant.gob.ec" required>
+                <label for="marca">Marca</label>
+                <input type="form-text" class="form-control" id="marca" name="marca" value="<?php echo $line[4];?>" maxlength="70">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="modelo">Modelo</label>
+                <input type="form-text" class="form-control" id="modelo" name="modelo" value="<?php echo $line[5];?>" maxlength="70">
 
               </div>
+             </div> 
+             <div class="form-row"> 
               <div class="form-group col-md-6">
-                <label for="cargo">Cargo</label>
-                <input type="form-text" class="form-control" id="cargo" name="cargo" value="<?php echo $line[4];?>"  maxlength="70" required>
+                <label for="descripcion">Descripcion</label>
+                <input type="form-text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $line[6];?>" maxlength="70" required>
               </div>
-              
+              <div class="form-group col-md-6">
+                <label for="color">Color</label>
+                <input type="form-text" class="form-control" id="color" name="color" value="<?php echo $line[7];?>" maxlength="30">
+              </div>
              </div>
-             <div class="form-row"> 
-             <div class="form-group col-md-6">
-                <label for="telefono">Teléfono</label>
-                <input type="form-text" class="form-control" id="telefono" name="telefono" value="<?php echo $line[5];?>" pattern="^[0-9]+" maxlength="10" required>
-              </div>
-             
-              <div class="form-group col-md-6">
-                <label for="direccion">Dirección</label>
-                <input type="form-text" class="form-control" value="<?php echo $line[6];?>" id="direccion" name="direccion" maxlength="70" required>
-              </div>
-              </div>
 
-
-              <div class="form-group col-md-12">
-                <label for="departamento">Departamento</label>
+             <div class="form-row">
+               <div class="form-group col-md-12">
+                <label for="custodio">Asignar custodio</label>
                 
-
-                <!-- <input type="form-text" class="form-control" id="departamento" name="departamento" value="<?php echo $line[7];?>" pattern="^[0-9]+" maxlength="10" required> -->
-                <select class="custom-select-sm float-right" name="departamento" id="departamento">
-                  <option value="0"><?php echo $line[7];?></option>
-                  <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->
+                <select class="custom-select-sm float-right" name="custodio" id="custodio">
+                  <option value="<?php echo $line[12]?>"><?php echo $line[9]."".$line[10];?></option> 
+                  <!-- BUSQUEDA EN LA TABLA DE personas PARA LLENAR EL COMBO BOX -->
                   <?php
-                  $consulta = $my_sqli->query("SELECT iddepartamento, descripcion FROM departamentos");
+                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
                   while($valores = mysqli_fetch_array($consulta)){
-                    echo '<option value="'.$valores[iddepartamento].'">'.$valores[descripcion].'</option>';
+                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
                   }
                   ?>
 
@@ -154,12 +154,15 @@ extract($_GET);
 
 
               </div>
-              
-             
+
+             </div>
+
+
              <div class="form-row">
-               <div class="form-group col-md-12">
-                 <label for="foto">Fotografía</label>
-                 <input type="file" class="form-control" id="imagen" name="imagen" >
+               <div class="form-group col">
+                 <label for="observacion">Observación:</label>
+                 <input type="form-text" class="form-control" id="observacion" name="observacion" value="<?php echo $line[8];?>" maxlength="70">
+                 <input type="hidden" id="idequipo" name="idequipo" value="<?php echo $line[11];?>">
                </div>
              </div>
              
@@ -168,7 +171,8 @@ extract($_GET);
       </div>
       <div class="modal-footer" align="center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button> 
-        <button type="submit" class="btn btn-primary" onclick="actualiza_usuario.php">Actualizar</button>
+        <button type="submit" class="btn btn-primary" onclick="actualiza_equipo.php">Actualizar</button>
+        
       </div>
       </form>
     </div>

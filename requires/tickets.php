@@ -18,8 +18,8 @@ extract($_POST);
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="<?=$url_sitio?>img/favicon-32x32.png"/>
     <script type="text/javascript" src="../js/valida.js"></script>
-    <!-- Para seleccionar fecha -->
-    <
+    
+    
 
     <title><?php echo $nom_sitio; ?></title>
   </head>
@@ -35,8 +35,14 @@ extract($_POST);
 
     <form action="tickets.php" method="post">
             <div class="form-row">
+              <div class="form-group col-md-12">
+                <a class="nav-link" href="tickets.php">Listado/Búsqueda de Tickets de Mantenimiento creados:</a>
+              </div>
+              
+            </div>
+            <div class="form-row">
               <div class="form-group col-md-3">
-                <input class="form-control form-control-sm" type="Ticket" placeholder="Ticket" aria-label="Search" name="ticket" readonly>
+                <input class="form-control form-control-sm" type="Ticket" placeholder="Ticket" aria-label="Search" name="ticket">
               </div>
               <div class="form-group col-md-1">
                 <button class="btn btn-outline-success btn-sm" type="button" onclick="location.href='http://www.ant.gob.ec'"><i class="fas fa-search"></i></button>
@@ -48,42 +54,66 @@ extract($_POST);
                 <button class="btn btn-outline-success btn-sm" type="button" onclick="location.href='http://www.ant.gob.ec'"><i class="fas fa-search"></i></button>
               </div>
               <div class="form-group col-md-3">
-                <input class="form-control form-control-sm" type="search" placeholder="Técnico" aria-label="Search" name="tecnico">
+                <select class="custom-select-sm float-right" required>
+                  <option value="0">Técnico responsable:</option>
+                  <option>Alejandro Arizo</option>
+                  <option>Mauricio Ochoa</option>
+                  <option>César Mieles</option>
+                </select>
               </div>
               <div class="form-group col-md-1">
                 <button class="btn btn-outline-success btn-sm" type="button" onclick="location.href='http://www.ant.gob.ec'"><i class="fas fa-search"></i></button>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group col-md-3">
-                <input class="form-control form-control-sm" type="search" placeholder="Usuario" aria-label="Usuario" name="usuario">
+              <div class="form-group col-md-4">
+                
+                <select class="custom-select-sm float-right" required>
+                <option value="0">Usuario solicitante:</option>
+                <!-- BUSQUEDA EN LA TABLA DE USUARIOS PARA LLENAR EL COMBO BOX -->
+                  <?php
+                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
+                  while($valores = mysqli_fetch_array($consulta)){
+                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos]." ".$valores[nombres].'</option>';
+                  }
+                  ?>
+
+                </select>
+
+
               </div>
               <div class="form-group col-md-1">
                 <button class="btn btn-outline-success btn-sm" type="button"><i class="fas fa-search"></i></button></div>
-              <div class="form-group col-md-3">
+              
+              <div class="form-group col-md-2">
                 <input class="form-control form-control-sm" type="search" placeholder="Equipo" aria-label="Equipo" name="equipo">
               </div>
               <div class="form-group col-md-1">
                 <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
               </div>
-              <div class="form-group col-md-4">
-                <label for="tipo" class="form-label">Tipo:</label>
-                <select class="custom-select-sm">
-                  <option>Mantenimiento preventivo</option>
-                  <option>Mantenimiento correctivo</option>
-                  <option>Revisión e inspección</option>
+              <div class="form-group col-md-3">
+                
+                <select class="custom-select-sm float-right">
+                  <option value="0">Estado de atención:</option>
+                  <option>Ticekts Atendidos</option>
+                  <option>Ticekts Por Atender</option>
                 </select>
+              
+              </div>
+              <div class="form-group col-md-1">
+                <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
               </div>
             </div>
+
             <div class="form-row">
               <div class="form-group col-md-2">
-                <button class="btn-group btn-sm" type="submit">Generar Ticket</button>
+                <button class="btn-group btn-sm btn-secondary" type="button" data-toggle="modal" data-target="#staticBackdrop1">Nuevo Ticket</button>
               </div>
               <div class="form-group col-md-2">
-                <button class="btn-group btn-sm" type="submit">Eliminar Ticket</button>
+                <button class="btn-group btn-sm btn-danger" type="submit">Ticket Atendido!</button>
               </div>
               <div class="form-group col-md-2">
-                <button class="btn-group btn-sm" type="submit">Limpiar Ticket</button>
+                <button class="btn-group btn-sm" type="submit">Limpiar Búsqueda</button>
               </div>
               <div class="form-group col-md-6 ">
                  <a href="<?=$url_sitio?>requires/its.php" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Salir</a>
@@ -106,7 +136,12 @@ extract($_POST);
     $resultado = $my_sqli->query($query);
   }
   else{
-    $query = "SELECT cod_avaluac, cod_ant, cod_esbye, serie, marca, modelo, descripcion, color, observacion FROM equipostecnologicos WHERE cod_avaluac LIKE '$campo%' OR cod_ant LIKE '$campo%' OR cod_esbye LIKE '$campo%' OR serie LIKE '$campo%' OR marca LIKE '$campo%' OR modelo LIKE '$campo%' OR descripcion LIKE '$campo%' OR color LIKE '$campo%' OR observacion LIKE '$campo%'";
+    // $query = "SELECT cod_avaluac, cod_ant, cod_esbye, serie, marca, modelo, descripcion, color, observacion FROM equipostecnologicos WHERE cod_avaluac LIKE '$campo%' OR cod_ant LIKE '$campo%' OR cod_esbye LIKE '$campo%' OR serie LIKE '$campo%' OR marca LIKE '$campo%' OR modelo LIKE '$campo%' OR descripcion LIKE '$campo%' OR color LIKE '$campo%' OR observacion LIKE '$campo%'";
+
+    // Query Corregido
+    $query = " ";
+
+
       $resultado = $my_sqli->query($query);
 
   }
@@ -147,7 +182,85 @@ extract($_POST);
 ?>
 </div>
 
+<!-- MODAL -->
+<!-- CREACIÓN DE TICKETS DE MANTENIMIENTO -->
+ <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-clipboard-check"></i><strong>&nbsp;&nbsp;Creación de Tickets</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="crea_ticket" action="crea_ticket.php" method="post" enctype="multipart/form-data">
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="cedula">Fecha:</label>
+                <input type="date" class="form-control" id="cedula" name="cedula" pattern="^[0-9]+" minlength="10" maxlength="10" required>
+              </div>
+             </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="cedula">Técnico responsable:</label>
+                <select class="custom-select-sm" required>
+                  <option>Alejandro Arizo</option>
+                  <option>Mauricio Ochoa</option>
+                  <option>César Mieles</option>
+                </select>
+              </div>
+              <div class="form-group col-md-12">
+                <label for="nombres">Usuario solicitante:</label>
+                <select class="custom-select-sm" required>
+                <option value="0">Seleccionar:</option>
+                <!-- BUSQUEDA EN LA TABLA DE USUARIOS PARA LLENAR EL COMBO BOX -->
+                  <?php
+                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
+                  while($valores = mysqli_fetch_array($consulta)){
+                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos]." ".$valores[nombres].'</option>';
+                  }
+                  ?>
 
+                </select>
+              </div>
+             </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="cargo">Equipo:</label>
+                <input type="form-text" class="form-control" id="cargo" name="cargo" maxlength="70" required>
+              </div>
+            </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="direccion">Tipo de mantenimiento:</label>
+                <select class="custom-select-sm" required>
+                  <option>Mantenimiento preventivo</option>
+                  <option>Mantenimiento correctivo</option>
+                  <option>Revisión e inspección</option>
+                </select>
+              </div>
+              
+             </div>
+             <div class="form-row">
+               <div class="form-group col-md-12">
+                 <label for="foto">Adjunto del estado del equipo (imagen/PDF):</label>
+                 <input type="file" class="form-control" id="imagen" name="imagen" >
+               </div>
+             </div>
+             
+            
+        
+      </div>
+      <div class="modal-footer" align="center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button> 
+        <button type="submit" class="btn btn-primary" onclick="valida_form();">Crear</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
 

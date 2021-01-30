@@ -10,9 +10,10 @@ extract($_POST);
 	$email = $_POST['email'];
 	$direccion = $_POST['direccion'];
 	$telefono = $_POST['telefono'];
+	$departamento = $_POST['departamento'];
 
-//Consulta para actualizar en la BD	
-	$actualizar = "UPDATE personas SET cedula='$cedula', nombres='$nombres', apellidos='$apellidos', direccion='$direccion', telefono ='$telefono', cargo='$cargo', email='$email' WHERE cedula=$cedula";
+	//Consulta para actualizar en la BD	
+	$actualizar = "UPDATE personas SET cedula='$cedula', nombres='$nombres', apellidos='$apellidos', direccion='$direccion', telefono ='$telefono', cargo='$cargo', email='$email', departamentos_iddepartamento='$departamento' WHERE cedula=$cedula";
 	$resultado1 = $my_sqli->query($actualizar);
 	if ($resultado1 === false) {
 		echo "Error al registrar datos: " . $my_sqli->error;

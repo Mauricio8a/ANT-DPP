@@ -47,11 +47,10 @@ extract($_POST);
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestión de Equipos
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" data-toggle="modal" data-target="#staticBackdrop1">Ingreso de Equipos</a>
               <a class="dropdown-item" href="<?=$url_sitio?>requires/tickets.php">Tickets de Mantenimiento</a>
-              <a class="dropdown-item" href="<?=$url_sitio?>requires/crea_equipo.php">Ingreso de Equipos</a>
               <a class="dropdown-item" href="<?=$url_sitio?>requires/reparaciones.php">Equipos en Reparación</a>
-              <!-- <a class="dropdown-item" href="#">Editar Usuarios</a> -->
-             
+                           
             </div>
             <li class="nav-item">
             <a class="nav-link" href="../index.php">Salir</a>
@@ -70,13 +69,13 @@ extract($_POST);
  <?php
  if(empty($_POST['campo'])){
 
-    $query = "SELECT cod_avaluac, cod_ant, cod_esbye, serie, marca, modelo, descripcion, color, observacion FROM equipostecnologicos";
+    $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a INNER JOIN personas b ON a.custodios_idcustodio = b.idpersona ORDER BY a.descripcion";
     $resultado = $my_sqli->query($query);
   }
   else{
-    $query = "SELECT cod_avaluac, cod_ant, cod_esbye, serie, marca, modelo, descripcion, color, observacion FROM equipostecnologicos WHERE cod_avaluac LIKE '$campo%' OR cod_ant LIKE '$campo%' OR cod_esbye LIKE '$campo%' OR serie LIKE '$campo%' OR marca LIKE '$campo%' OR modelo LIKE '$campo%' OR descripcion LIKE '$campo%' OR color LIKE '$campo%' OR observacion LIKE '$campo%'";
-      
-    //$resultado->bindParam(':field', $_POST['campo']);
+    
+    $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a INNER JOIN personas b ON a.custodios_idcustodio = b.idpersona AND (a.cod_avaluac LIKE '%$campo%' OR a.cod_ant LIKE '%$campo%' OR a.cod_esbye LIKE '%$campo%' OR a.serie LIKE '%$campo%' OR a.marca LIKE '%$campo%' OR a.modelo LIKE '%$campo%' OR a.descripcion LIKE '%$campo%' OR a.observacion LIKE '%$campo%' OR b.apellidos LIKE '%$campo%' OR b.nombres LIKE '%$campo%') ORDER BY a.descripcion";
+
     $resultado = $my_sqli->query($query);
 
   }
@@ -92,23 +91,25 @@ extract($_POST);
           echo "<td><strong>MARCA</strong></td>";
           echo "<td><strong>MODELO</strong></td>";
           echo "<td><strong>DESCRIPCION</strong></td>";
-          echo "<td><strong>COLOR</strong></td>";
           echo "<td><strong>OBSERVACION</strong></td>";
+          echo "<td><strong>CUSTODIO</strong></td>";
           echo "</tr>";
         $cont = 0;
         while($line1 = mysqli_fetch_row($resultado)){
           echo "<tr>";
           $cont++;
           echo "<td><strong>$cont</strong></td>";
-          echo "<td><a href='editar.php?cedula=$line1[0]'>$line1[0]</a></td>";          
+          echo "<td>$line1[0]</td>";          
           echo "<td>$line1[1]</td>";
           echo "<td>$line1[2]</td>";
-          echo "<td>$line1[3]</td>";
+          echo "<td><a href='editar_equipo.php?serie=$line1[3]'>$line1[3]</a></td>"; 
           echo "<td>$line1[4]</td>";
           echo "<td>$line1[5]</td>";
           echo "<td>$line1[6]</td>";
-          echo "<td><a href='editar.php?cedula=$line1[0]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
-          echo "<td><a href='eliminar.php?cedula=$line1[0]'><i class='far fa-trash-alt'></i></a></td>";
+          echo "<td>$line1[7]</td>";
+          echo "<td>$line1[8] $line1[9]</td>";
+          echo "<td><a href='editar_equipo.php?serie=$line1[3]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
+          echo "<td><a href='eliminar.php?serie=$line1[3]'><i class='far fa-trash-alt'></i></a></td>";
 
           // echo "<td><a href='editar.php?id=$line1[0]' class='editar'><span class='icon-pencil'></span></a>";
           // echo "<td><a href='eliminar.php?cedula=$line1[1]' class='eliminar'><span class='icon-trashcan'></span></a>";
@@ -118,6 +119,107 @@ extract($_POST);
         echo "</table>";
 ?>
 </div>
+
+<!-- MODAL -->
+<!-- CREACIÓN DE USUARIOS -->
+ <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-desktop"></i><strong>&nbsp;&nbsp;Ingreso de Equipos</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form name="crea_eq" action="crea_equipo.php" method="post" enctype="multipart/form-data">
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="avaluac">CODIGO AVALUAC</label>
+                <input type="form-text" class="form-control" id="avaluac" name="avaluac" pattern="^[0-9]+" maxlength="20">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="ant">CODIGO ANT</label>
+                <input type="form-text" class="form-control" id="ant" name="ant"  maxlength="20">
+              </div>
+             </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="esbye">CODIGO ESBYE</label>
+                <input type="form-text" class="form-control" id="esbye" name="esbye" maxlength="30">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="serie">SERIE</label>
+                <input type="form-text" class="form-control" id="serie" name="serie" maxlength="70" required>
+              </div>
+             </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="marca">Marca</label>
+                <input type="form-text" class="form-control" id="marca" name="marca" maxlength="70">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="modelo">Modelo</label>
+                <input type="form-text" class="form-control" id="modelo" name="modelo" maxlength="70">
+
+              </div>
+             </div> 
+             <div class="form-row"> 
+              <div class="form-group col-md-6">
+                <label for="descripcion">Descripcion</label>
+                <input type="form-text" class="form-control" id="descripcion" name="descripcion" maxlength="70" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="color">Color</label>
+                <input type="form-text" class="form-control" id="color" name="color" maxlength="30">
+              </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-group col-md-12">
+                <label for="custodio">Asignar custodio</label>
+                
+                <select class="custom-select-sm float-right" name="custodio" id="custodio">
+                  <option value="0">Seleccionar:</option> 
+                  <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->
+                  <?php
+                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
+                  while($valores = mysqli_fetch_array($consulta)){
+                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
+                  }
+                  ?>
+
+                </select>
+
+
+              </div>
+
+             </div>
+             
+
+             <div class="form-row">
+               <div class="form-group col">
+                 <label for="observacion">Observación:</label>
+                 <input type="form-text" class="form-control" id="observacion" name="observacion" maxlength="70">
+               </div>
+             </div>
+             
+            
+        
+      </div>
+      <div class="modal-footer" align="center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button> 
+        <button type="submit" class="btn btn-primary" onclick="crea_equipo.php">Ingresar</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
 
 
 

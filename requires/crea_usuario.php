@@ -11,7 +11,8 @@ extract($_POST);
 	$email = $_POST['email'];
 	$direccion = $_POST['direccion'];
 	$telefono = $_POST['telefono'];
-	
+	$departamento = $_POST['departamento'];
+
 
 // Busqueda de datos ingresados en la BD para evitar duplicados
 	$consulta = "SELECT cedula, apellidos, email FROM personas WHERE cedula='$cedula'";
@@ -24,10 +25,9 @@ extract($_POST);
 
 // Ingreso de datos en BD
 if(is_null($line)){
-	//echo '<script>alert("EL REGISTRO NO EXISTE!")</script>'; // El registro no existe
-	// $query1 = "INSERT INTO personas(cedula, nombres, apellidos, direccion, telefono, cargo, email) VALUES('$cedula','$nombres','$apellidos', '$direccion', '$telefono', '$cargo','$email')";
+	
 	//Consulta SQL para insertar en la BDD
-	$insertar = "INSERT INTO personas (cedula, nombres, apellidos, direccion, telefono, cargo, email) VALUES ('$cedula','$nombres','$apellidos', '$direccion', '$telefono', '$cargo','$email')";
+	$insertar = "INSERT INTO personas (cedula, nombres, apellidos, direccion, telefono, cargo, email, departamentos_iddepartamento) VALUES ('$cedula','$nombres','$apellidos', '$direccion', '$telefono', '$cargo','$email','$departamento')";
 	$resultado1 = $my_sqli->query($insertar);
 	if ($resultado1 === false) {
 		echo "Error al registrar datos: " . $my_sqli->error;
@@ -45,5 +45,5 @@ else{
 	exit();
 }
 }
-//$my_sql->close();
+
 ?>

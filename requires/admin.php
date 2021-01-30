@@ -44,12 +44,10 @@ extract($_POST);
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           </form>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestión de Usuarios
-            </a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestión de Usuarios</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" data-toggle="modal" data-target="#staticBackdrop1">Crear Usuarios</a>
-              <!-- <a class="dropdown-item" href="#">Editar Usuarios</a> -->
-             
+              
             </div>
             <li class="nav-item">
             <a class="nav-link" href="../index.php">Salir</a>
@@ -68,13 +66,12 @@ extract($_POST);
  <?php
  if(empty($_POST['campo'])){
 
-    $query = "SELECT cedula, apellidos, nombres, direccion, telefono, cargo, email FROM personas";
+    $query = "SELECT a.cedula, a.apellidos, a.nombres, a.cargo, a.email, a.telefono, b.descripcion FROM personas a INNER JOIN departamentos b ON a.departamentos_iddepartamento = b.iddepartamento ORDER BY a.apellidos";
     $resultado = $my_sqli->query($query);
   }
   else{
-    $query = "SELECT cedula, apellidos, nombres, direccion, telefono, cargo, email FROM personas WHERE cedula LIKE '$campo%' OR apellidos LIKE '$campo%' OR nombres LIKE '$campo%' OR direccion LIKE '$campo%' OR telefono LIKE '$campo%' OR cargo LIKE '$campo%' OR email LIKE '$campo%'";
-      
-    //$resultado->bindParam(':field', $_POST['campo']);
+    $query = "SELECT a.cedula, a.apellidos, a.nombres, a.cargo, a.email, a.telefono, b.descripcion FROM personas a INNER JOIN departamentos b ON a.departamentos_iddepartamento = b.iddepartamento AND (a.nombres LIKE '%$campo%' OR a.apellidos LIKE '%$campo%' OR a.cedula LIKE '%$campo%' OR a.cargo LIKE '%$campo%' OR b.descripcion LIKE '%$campo%') ORDER BY b.descripcion";
+
     $resultado = $my_sqli->query($query);
 
   }
@@ -88,9 +85,8 @@ extract($_POST);
           echo "<td><strong>NOMBRES</strong></td>";
           echo "<td><strong>CARGO</strong></td>";
           echo "<td><strong>EMAIL</strong></td>";
-          echo "<td><strong>DIRECCIÓN</strong></td>";
-          echo "<td><strong>TELÉFONO</strong></td>";
-          
+          ECHO "<td><strong>TELEFONO</strong></td>";
+          echo "<td><strong>DEPARTAMENTO</strong></td>";
           echo "</tr>";
         $cont = 0;
         while($line1 = mysqli_fetch_row($resultado)){
@@ -100,16 +96,13 @@ extract($_POST);
           echo "<td><a href='editar_usuario.php?cedula=$line1[0]'>$line1[0]</a></td>";          
           echo "<td>$line1[1]</td>";
           echo "<td>$line1[2]</td>";
-          echo "<td>$line1[5]</td>";
-          echo "<td>$line1[6]</td>";
           echo "<td>$line1[3]</td>";
           echo "<td>$line1[4]</td>";
+          echo "<td>$line1[5]</td>";
+          echo "<td>$line1[6]</td>";
+          
           echo "<td><a href='editar_usuario.php?cedula=$line1[0]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
           echo "<td><a href='eliminar_usuario.php?cedula=$line1[0]'><i class='far fa-trash-alt'></i></a></td>";
-
-          // echo "<td><a href='editar.php?id=$line1[0]' class='editar'><span class='icon-pencil'></span></a>";
-          // echo "<td><a href='eliminar.php?cedula=$line1[1]' class='eliminar'><span class='icon-trashcan'></span></a>";
-          // echo "<td><a href='prefactura.php?cedula=$line1[1]' class='prefactura' alt='Prefactura'><span class='icon-creditcard'></span></a>";
           echo "</tr>";
           }
         echo "</table>";
@@ -122,7 +115,7 @@ extract($_POST);
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-desktop"></i><strong>&nbsp;&nbsp;Creación de personal</strong></h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-user-plus"></i><strong>&nbsp;&nbsp;Creación de personal</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -166,8 +159,32 @@ extract($_POST);
                 <input type="form-text" class="form-control" id="telefono" name="telefono" pattern="^[0-9]+" maxlength="10" required>
               </div>
              </div>
+
              <div class="form-row">
                <div class="form-group col-md-12">
+                <label for="departamento">Departamento</label>
+                
+
+                <!-- <input type="form-text" class="form-control" id="departamento" name="departamento" value="<?php echo $line[7];?>" pattern="^[0-9]+" maxlength="10" required> -->
+                <select class="custom-select-sm float-right" name="departamento" id="departamento">
+                  <option value="0">Seleccionar:</option> 
+                  <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->
+                  <?php
+                  $consulta = $my_sqli->query("SELECT iddepartamento, descripcion FROM departamentos");
+                  while($valores = mysqli_fetch_array($consulta)){
+                    echo '<option value="'.$valores[iddepartamento].'">'.$valores[descripcion].'</option>';
+                  }
+                  ?>
+
+                </select>
+
+
+              </div>
+
+             </div>
+             
+             <div class="form-row">
+               <div class="form-group col">
                  <label for="foto">Fotografía</label>
                  <input type="file" class="form-control" id="imagen" name="imagen" >
                </div>
@@ -185,7 +202,7 @@ extract($_POST);
     </div>
   </div>
 </div>
-
+</div>
 
     <?php include ("footer.php"); ?>
   <!-- Optional JavaScript -->
