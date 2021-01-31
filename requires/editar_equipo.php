@@ -47,7 +47,7 @@ extract($_GET);
             </div>
           </li>
           <li class="nav-item">
-          		<a class="nav-link" href="admin.php">Salir</a>
+          		<a class="nav-link" href="its.php">Salir</a>
           </li>
         </ul>
       </div>
@@ -59,7 +59,7 @@ extract($_GET);
 
 	</div>
 	<?php
-          	$query0 = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.color, a.observacion, b.apellidos, b.nombres, a.idequipo, a.custodios_idcustodio FROM equipostecnologicos a, personas b WHERE a.serie='$serie' AND a.custodios_idcustodio = b.idpersona";
+          	$query0 = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.color, a.observacion, b.apellidos, b.nombres, a.idequipo, a.custodios_idcustodio FROM equipostecnologicos a, personas b, custodios c WHERE a.serie='$serie' AND a.custodios_idcustodio = c.idcustodio AND b.idpersona=c.personas_idpersona";
           	$result0 = $my_sqli->query($query0);
           	$line = mysqli_fetch_row($result0);
   ?>
@@ -144,9 +144,9 @@ extract($_GET);
                   <option value="<?php echo $line[12]?>"><?php echo $line[9]."".$line[10];?></option> 
                   <!-- BUSQUEDA EN LA TABLA DE personas PARA LLENAR EL COMBO BOX -->
                   <?php
-                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
+                  $consulta = $my_sqli->query("SELECT a.apellidos, a.nombres, b.personas_idpersona, b.idcustodio FROM personas a, custodios b WHERE a.idpersona = b.personas_idpersona");
                   while($valores = mysqli_fetch_array($consulta)){
-                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
+                    echo '<option value="'.$valores[idcustodio].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
                   }
                   ?>
 

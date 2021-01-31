@@ -19,7 +19,7 @@ require 'dll/mysql.php';
     <title><?php echo $nom_sitio; ?></title>
   </head>
   <body>
-    <?php include ("requires/header.php"); ?>
+    <?php include ("requires/header2.php"); ?>
     <!-- Contenidos -->
     <div class="container" id="main">
   <div class="row">
@@ -68,23 +68,25 @@ require 'dll/mysql.php';
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="loginsce.php" method="post">
             <div class="form-group">
-              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;E-mail</label>
+              <label for="user"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
               
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">Ingrese su e-mail como nombre de usuario.</small>
+              <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp" name="user">
+              <small id="textlHelp" class="form-text text-muted">Ingrese su nombre de usuario registado.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><i class="fas fa-key"></i>&nbsp;&nbsp;Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
             </div>
-        </form>
-      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary">Ingresar</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
       </div>
+
+        </form>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -93,28 +95,29 @@ require 'dll/mysql.php';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;<strong>Ingreso - Consulta de Archivo</strong></h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-file-alt"></i>&nbsp;&nbsp;<strong>Ingreso - Sistema de Archivo</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="loginscap.php" method="post">
             <div class="form-group">
-              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;E-mail</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">Ingrese su e-mail como nombre de usuario.</small>
+              <label for="exampleText1"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
+              <input type="text" class="form-control" id="exampleInputText1" aria-describedby="textHelp" name="user">
+              <small id="textHelp" class="form-text text-muted">Ingrese su nombre de usuario registrado.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><i class="fas fa-key"></i>&nbsp;&nbsp;Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
             </div>
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary">Ingresar</button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -123,33 +126,34 @@ require 'dll/mysql.php';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-network-wired"></i>&nbsp;&nbsp<strong>Ingreso - Consulta de Quipux Firmados</strong></h5>
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-network-wired"></i>&nbsp;&nbsp<strong>Ingreso - Departamento Técnico</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="loginsquipux.php" method="post">
             <div class="form-group">
-              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;E-mail</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <small id="emailHelp" class="form-text text-muted">Ingrese su e-mail como nombre de usuario.</small>
+              <label for="exampleTextEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
+              <input type="text" class="form-control" id="exampleInputText1" aria-describedby="emailHelp" name="user">
+              <small id="textHelp" class="form-text text-muted">Ingrese su nombre de usuario registrado.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1"><i class="fas fa-key"></i>&nbsp;&nbsp;Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="pass">
             </div>
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-        <button type="button" class="btn btn-primary">Ingresar</button>
-      </div>
+      
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -181,7 +185,7 @@ require 'dll/mysql.php';
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="modal fade" id="staticBackdrop5" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -194,10 +198,10 @@ require 'dll/mysql.php';
         </button>
       </div>
       <div class="modal-body">
-        <form action="login.php">
+        <form action="login.php" method="post">
             <div class="form-group">
-              <label for="exampleInputEmail1"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user" >
+              <label for="exampleInputText1"><i class="fas fa-user"></i>&nbsp;&nbsp;Usuario</label>
+              <input type="text" class="form-control" id="usuarioing" aria-describedby="textHelp" name="user" >
               <small id="emailHelp" class="form-text text-muted">Ingrese su nombre de usuario.</small>
             </div>
             <div class="form-group">

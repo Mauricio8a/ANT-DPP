@@ -69,12 +69,13 @@ extract($_POST);
  <?php
  if(empty($_POST['campo'])){
 
-    $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a INNER JOIN personas b ON a.custodios_idcustodio = b.idpersona ORDER BY a.descripcion";
+    // $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a INNER JOIN personas b ON a.custodios_idcustodio = b.idpersona ORDER BY a.descripcion";
+  $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a, personas b, custodios c WHERE a.custodios_idcustodio = c.idcustodio AND c.personas_idpersona = b.idpersona ORDER BY a.descripcion";
     $resultado = $my_sqli->query($query);
   }
   else{
     
-    $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a INNER JOIN personas b ON a.custodios_idcustodio = b.idpersona AND (a.cod_avaluac LIKE '%$campo%' OR a.cod_ant LIKE '%$campo%' OR a.cod_esbye LIKE '%$campo%' OR a.serie LIKE '%$campo%' OR a.marca LIKE '%$campo%' OR a.modelo LIKE '%$campo%' OR a.descripcion LIKE '%$campo%' OR a.observacion LIKE '%$campo%' OR b.apellidos LIKE '%$campo%' OR b.nombres LIKE '%$campo%') ORDER BY a.descripcion";
+    $query = "SELECT a.cod_avaluac, a.cod_ant, a.cod_esbye, a.serie, a.marca, a.modelo, a.descripcion, a.observacion, b.apellidos, b.nombres FROM equipostecnologicos a, personas b, custodios c WHERE a.custodios_idcustodio = c.idcustodio AND c.personas_idpersona = b.idpersona AND (a.cod_avaluac LIKE '%$campo%' OR a.cod_ant LIKE '%$campo%' OR a.cod_esbye LIKE '%$campo%' OR a.serie LIKE '%$campo%' OR a.marca LIKE '%$campo%' OR a.modelo LIKE '%$campo%' OR a.descripcion LIKE '%$campo%' OR a.observacion LIKE '%$campo%' OR b.apellidos LIKE '%$campo%' OR b.nombres LIKE '%$campo%') ORDER BY a.descripcion";
 
     $resultado = $my_sqli->query($query);
 
@@ -119,7 +120,7 @@ extract($_POST);
 </div>
 
 <!-- MODAL -->
-<!-- CREACIÓN DE USUARIOS -->
+<!-- CREACIÓN DE EQUIPOS -->
  <div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -181,9 +182,9 @@ extract($_POST);
                   <option value="0">Seleccionar:</option> 
                   <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->
                   <?php
-                  $consulta = $my_sqli->query("SELECT idpersona, apellidos, nombres FROM personas");
+                  $consulta = $my_sqli->query("SELECT a.apellidos, a.nombres, b.personas_idpersona, B.idcustodio FROM personas a, custodios b WHERE a.idpersona = b.personas_idpersona ");
                   while($valores = mysqli_fetch_array($consulta)){
-                    echo '<option value="'.$valores[idpersona].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
+                    echo '<option value="'.$valores[idcustodio].'">'.$valores[apellidos].' '.$valores[nombres].'</option>';
                   }
                   ?>
 

@@ -59,7 +59,7 @@ extract($_GET);
 
 	</div>
 	<?php
-          	$query0 = "SELECT a.cedula, a.apellidos, a.nombres, a.email, a.cargo, a.telefono, a.direccion, b.descripcion FROM personas a, departamentos b WHERE a.cedula='$cedula' AND a.departamentos_iddepartamento = b.iddepartamento";
+          	$query0 = "SELECT a.cedula, a.apellidos, a.nombres, a.email, a.cargo, a.telefono, a.direccion, b.descripcion, b.iddepartamento FROM personas a, departamentos b WHERE a.cedula='$cedula' AND a.departamentos_iddepartamento = b.iddepartamento";
           	$result0 = $my_sqli->query($query0);
           	$line = mysqli_fetch_row($result0);
   ?>
@@ -140,7 +140,7 @@ extract($_GET);
                 
 
                 <select class="custom-select-sm float-right" name="departamento" id="departamento">
-                  <option value="0"><?php echo $line[7];?></option>
+                  <option value="<?php echo $line[8] ?>"><?php echo $line[7];?></option>
                   <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->
                   <?php
                   $consulta = $my_sqli->query("SELECT iddepartamento, descripcion FROM departamentos");

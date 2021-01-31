@@ -14,39 +14,51 @@
       <h2 align="center"><?php echo $nom_sitio;?></h2>
       </div>
   </div>
-  <div class="row">
-      <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
-      </div>
-  </div>
-  </div>
+ <div class="menu-bar" align="center">
+        
+        <nav class="container navbar-expand-lg" role="menu">
+           
+            <button class="navbar-toggler" data-target="#menu" data-toggle="collapse">
+                        <span><i class="fas fa-bars"></i></span>
+                      </button>   
 
+           
+
+            <div class="col-lg-12">
+                 <div class="collapse navbar-collapse" id="menu">
+                  <ul class="navbar-nav mr-auto menu-list list-inline">
+                    <li class="nav-item active list-inline-item">
+                      <a href="<?=$url_sitio?>index.php" class="nav-link"><i class="fas fa-home"></i><h5><strong>Inicio</strong></h5> </a>
+                    </li>
+                    <li class="nav-item list-inline-item">
+                      <a href="#" class="nav-link"><i class="fas fa-users-cog"></i> <h5><strong>Administración</strong></h5></a>
+                      
+                    </li>
+                    <li class="nav-item active list-inline-item" >
+                      <a href="#" class="nav-link"><i class="fas fa-plug"></i> <h5><strong>Coordinación Tecnológica</strong></h5></a>
+                      
+                    </li>
+                    <li class="nav-item active list-inline-item">
+                      <a href="#" class="nav-link"><i class="fas fa-luggage-cart"></i><h5><strong>Archivo</strong></h5> </a>
+                    </li>
+                    <li class="nav-item active list-inline-item">
+                      <a  href="#" class="nav-link"><i class="fas fa-briefcase"></i><h5><strong>Departamento Técnico</strong></h5></a>
+                    </li>
+                    </li>
+                     <li class="nav-item active list-inline-item">
+                      <a href="<?=$url_sitio?>requires/contacto.php" class="nav-link"><i class="fas fa-mobile-alt"></i><h5><strong>Contacto</strong></h5></a>
+                    </li>
+                   </ul>
+            </div>
+
+          </div>
+       </nav>
+      </div>
+
+
+
+
+  </div>
+  
   </header>
+

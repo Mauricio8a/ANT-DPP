@@ -26,14 +26,22 @@ extract($_POST);
 // Ingreso de datos en BD
 if(is_null($line)){
 	
-	//Consulta SQL para insertar en la BDD
+	//Consulta SQL para insertar en la BDD tabla personas
 	$insertar = "INSERT INTO personas (cedula, nombres, apellidos, direccion, telefono, cargo, email, departamentos_iddepartamento) VALUES ('$cedula','$nombres','$apellidos', '$direccion', '$telefono', '$cargo','$email','$departamento')";
 	$resultado1 = $my_sqli->query($insertar);
+	
 	if ($resultado1 === false) {
 		echo "Error al registrar datos: " . $my_sqli->error;
 	} 
 	else
 		{
+		//SQL para actualizar la tabla custodios
+		$consulta2 = "SELECT idpersona FROM personas WHERE cedula='$cedula'";
+		$resultado2 = $my_sqli->query($consulta2);
+		$line2 = mysqli_fetch_row($resultado2);
+		$hoy = date("Y-m-d H:i:s");
+		$insertar2 = "INSERT INTO custodios (f_inicio, personas_idpersona) VALUES('$hoy','$line2[0]')";
+		$resultado3 = $my_sqli->query($insertar2);
 		echo '<script>alert("DATOS GRABADOS CON EXITO!")</script>';
 		echo "<script>location.href='editar_usuario.php?cedula=$cedula'</script>";
 		}

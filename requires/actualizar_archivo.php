@@ -27,6 +27,12 @@ extract($_POST);
 	} 
 	else
 		{
+			//Gestión de archivos
+		if (move_uploaded_file($_FILES['archivo']['tmp_name'], $path)) {
+			echo '<script>alert("Archivo PDF subido con éxito")</script>';
+			
+			echo '<script>location.href="archivo.php"</script>';
+		}
 		echo '<script>alert("DATOS GRABADOS CON EXITO!")</script>';
 		echo "<script>location.href='editar_archivo.php?folio=$folio'</script>";
 		}

@@ -6,7 +6,7 @@
 	//VARIABLES DEL FORMULARIO
 	$usuario = $_POST['user'];
 	$pass = $_POST['pass'];
-	$actor = "Administrador";
+	$actor = "Archivo";
 	
 	// Comprobacion del entorno de usuario Administrador
 	if(strlen(strstr($usuario, $actor))>0){
@@ -27,7 +27,7 @@
 				{
 					if($pass === $line[2]){
 				echo '<script>alert("Bienvenido ' .$line[0].' '.$line[1].' ")</script>';
-				echo "<script>location.href='requires/admin.php'</script>";
+				echo "<script>location.href='requires/archivo.php'</script>";
 					}
 					else
 					{

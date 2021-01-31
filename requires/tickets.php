@@ -173,9 +173,6 @@ extract($_POST);
           echo "<td><a href='editar.php?cedula=$line1[0]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
           echo "<td><a href='eliminar.php?cedula=$line1[0]'><i class='far fa-trash-alt'></i></a></td>";
 
-          // echo "<td><a href='editar.php?id=$line1[0]' class='editar'><span class='icon-pencil'></span></a>";
-          // echo "<td><a href='eliminar.php?cedula=$line1[1]' class='eliminar'><span class='icon-trashcan'></span></a>";
-          // echo "<td><a href='prefactura.php?cedula=$line1[1]' class='prefactura' alt='Prefactura'><span class='icon-creditcard'></span></a>";
           echo "</tr>";
           }
         echo "</table>";
