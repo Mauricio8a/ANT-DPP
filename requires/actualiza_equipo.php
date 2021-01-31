@@ -25,7 +25,7 @@ extract($_POST);
 	else
 		{
 		echo '<script>alert("DATOS GRABADOS CON EXITO!")</script>';
-		echo "<script>location.href='editar_equipo.php?idequipo=$idequipo'</script>";
+		echo "<script>location.href='editar_equipo.php?serie=$serie'</script>";
 		}
 
 

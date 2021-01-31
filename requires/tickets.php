@@ -36,7 +36,7 @@ extract($_POST);
     <form action="tickets.php" method="post">
             <div class="form-row">
               <div class="form-group col-md-12">
-                <a class="nav-link" href="tickets.php">Listado/Búsqueda de Tickets de Mantenimiento creados:</a>
+                <a class="nav-link" href="tickets.php">Emisión de Tickets de Mantenimiento:</a>
               </div>
               
             </div>
@@ -147,7 +147,7 @@ extract($_POST);
   }
 
   
-  echo "<table id='table' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
+  echo "<table id='table' class='table table-hover' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
         echo "<tr>";
           echo "<td><strong>TICKET#</strong></td>";
           echo "<td><strong>FECHA</strong></td>";

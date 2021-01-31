@@ -37,7 +37,7 @@ extract($_POST);
         <ul class="navbar-nav">
           
           <li class="nav-item">
-            <a class="nav-link" href="its.php">Listado de Equipos</a>
+            <a class="nav-link" href="its.php">Catálogo de Equipos</a>
           </li>
           <form class="form-inline" action="its.php" method="post">
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="campo">
@@ -81,12 +81,12 @@ extract($_POST);
   }
 
   
-  echo "<table id='table' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
+  echo "<table id='table' class='table table-hover' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
         echo "<tr>";
           echo "<td><strong>#</strong></td>";
           echo "<td><strong>COD_AVALUAC</strong></td>";
           echo "<td><strong>COD_ANT</strong></td>";
-          echo "<td><strong>COD_ESBYE</strong></td>";
+          //echo "<td><strong>COD_ESBYE</strong></td>";
           echo "<td><strong>SERIE</strong></td>";
           echo "<td><strong>MARCA</strong></td>";
           echo "<td><strong>MODELO</strong></td>";
@@ -101,7 +101,7 @@ extract($_POST);
           echo "<td><strong>$cont</strong></td>";
           echo "<td>$line1[0]</td>";          
           echo "<td>$line1[1]</td>";
-          echo "<td>$line1[2]</td>";
+          //echo "<td>$line1[2]</td>";
           echo "<td><a href='editar_equipo.php?serie=$line1[3]'>$line1[3]</a></td>"; 
           echo "<td>$line1[4]</td>";
           echo "<td>$line1[5]</td>";
@@ -111,9 +111,7 @@ extract($_POST);
           echo "<td><a href='editar_equipo.php?serie=$line1[3]'><i class='fas fa-pencil-alt float-right'></i></a></td>";
           echo "<td><a href='eliminar.php?serie=$line1[3]'><i class='far fa-trash-alt'></i></a></td>";
 
-          // echo "<td><a href='editar.php?id=$line1[0]' class='editar'><span class='icon-pencil'></span></a>";
-          // echo "<td><a href='eliminar.php?cedula=$line1[1]' class='eliminar'><span class='icon-trashcan'></span></a>";
-          // echo "<td><a href='prefactura.php?cedula=$line1[1]' class='prefactura' alt='Prefactura'><span class='icon-creditcard'></span></a>";
+      
           echo "</tr>";
           }
         echo "</table>";
@@ -176,7 +174,7 @@ extract($_POST);
              </div>
 
              <div class="form-row">
-               <div class="form-group col-md-12">
+               <div class="form-group col-md-12 form-control-sm">
                 <label for="custodio">Asignar custodio</label>
                 
                 <select class="custom-select-sm float-right" name="custodio" id="custodio">

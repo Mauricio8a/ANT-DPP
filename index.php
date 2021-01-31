@@ -27,19 +27,19 @@ require 'dll/mysql.php';
         <img src="img/eqs.jpg" alt="Equipos" align="center">
         <p><i class="fas fa-desktop fa-2x"></i>&nbsp;&nbsp;Sistema de <strong>Control de Equipos</strong></p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop1">Ingresar</button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4">Registrarse</button>
+        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4">Registrarse</button> -->
       </div>
       <div class="col-md-4" align="center">
         <img src="img/arch.jpg" height="180" alt="Archivo" align="center">
         <p><i class="fas fa-file-alt fa-2x"></i>&nbsp;&nbsp;Sistema de <strong>Consulta de Archivo Provincial</strong></p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop2">Ingresar</button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4">Registrarse</button>
+        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4">Registrarse</button> -->
       </div>
       <div class="col-md-4" align="center">
         <img src="img/quipux.jpg" height="180" alt="Quipux" align="center">
         <p><i class="fas fa-network-wired fa-2x"></i>&nbsp;&nbsp;Sistema de <strong>Seguimiento QUIPUX</strong></p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop3">Ingresar</button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4" >Registrarse</button>
+        <!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target= "#staticBackdrop4" >Registrarse</button> -->
       </div>
     </div>
     <div class="row">

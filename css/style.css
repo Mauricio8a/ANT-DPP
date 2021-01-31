@@ -50,6 +50,9 @@ h1 {
 
 #table{
 	font-size: 12px;
+	/*border: 1px solid black;
+	border-style: dashed;
+	border-collapse: collapse;*/ 
 }
 
 /*Footer*/
@@ -67,7 +70,7 @@ footer .col-md-4 {
 
 h4{
 	font-weight: bold;
-	color: #F4232D;
+	color: #065DAC; 
 	font-size: 20px;
 	margin-top: 0px;
 	padding: 10px;	

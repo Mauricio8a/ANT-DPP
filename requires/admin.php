@@ -77,7 +77,7 @@ extract($_POST);
   }
 
   
-  echo "<table id='table' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
+  echo "<table id='table' class='table table-hover' align='center'>";/*Creacion de tabla para mostrar resultados de consulta a la BDD*/
         echo "<tr>";
           echo "<td><strong>#</strong></td>";
           echo "<td><strong>CEDULA</strong></td>";

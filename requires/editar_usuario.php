@@ -139,7 +139,6 @@ extract($_GET);
                 <label for="departamento">Departamento</label>
                 
 
-                <!-- <input type="form-text" class="form-control" id="departamento" name="departamento" value="<?php echo $line[7];?>" pattern="^[0-9]+" maxlength="10" required> -->
                 <select class="custom-select-sm float-right" name="departamento" id="departamento">
                   <option value="0"><?php echo $line[7];?></option>
                   <!-- BUSQUEDA EN LA TABLA DE departamentos PARA LLENAR EL COMBO BOX -->

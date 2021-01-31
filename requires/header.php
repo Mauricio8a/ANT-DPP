@@ -39,7 +39,7 @@
                       
                     </li>
                     <li class="nav-item active list-inline-item">
-                      <a href="#staticBackdrop" data-toggle="modal"  class="nav-link"><i class="fas fa-luggage-cart"></i><h5><strong>Archivo</strong></h5> </a>
+                      <a href="<?=$url_sitio?>requires/archivo.php" class="nav-link"><i class="fas fa-luggage-cart"></i><h5><strong>Archivo</strong></h5> </a>
                     </li>
                     <li class="nav-item active list-inline-item">
                       <a  href="<?=$url_sitio?>requires/tecnico.php" class="nav-link"><i class="fas fa-briefcase"></i><h5><strong>Departamento Técnico</strong></h5></a>

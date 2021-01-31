@@ -65,7 +65,7 @@ extract($_GET);
   ?>
             <div class="row">
             	<div class="col-md-6">
-            		<div>CODIGO AVALUAC.: <strong><?php echo $line[0]; ?></strong></div>
+            		<div>CODIGO AVALUAC: <strong><?php echo $line[0]; ?></strong></div>
             		<div>CODIGO ANT: <strong><?php echo $line[1]?></strong></div>
             		<div>CODIGO ESBYE: <strong><?php echo $line[2]; ?></strong></div>
             		<div>SERIE #: <strong><?php echo $line[3]; ?></strong></div>
@@ -157,7 +157,7 @@ extract($_GET);
 
              </div>
 
-
+             <!-- Paso de valor del idequipo en forma oculta para la actualización --> 
              <div class="form-row">
                <div class="form-group col">
                  <label for="observacion">Observación:</label>
